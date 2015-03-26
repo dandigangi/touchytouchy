@@ -1,0 +1,6 @@
+{
+    "asi"           : false,
+    "debug"         : true,
+    "eqnull"        : false, 
+    "evil"          : false
+}
