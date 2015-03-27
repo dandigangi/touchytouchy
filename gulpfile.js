@@ -63,7 +63,12 @@ gulp.task('images-css', function() {
 
 // Javascript
 gulp.task('javascript', function() {
-  return gulp.src('src/assets/javascript/**/*.js')
+  return gulp.src(
+      [
+        'src/assets/javascript/vendor/*.js',
+        'src/assets/javascript/app.js'
+      ]
+    )
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'))
     .pipe(concat('app.js'))
