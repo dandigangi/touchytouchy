@@ -7,5 +7,5 @@ var updateColorScheme = function() {
   touchyApp.style.backgroundColor = newColorScheme;
 };
 
-var touchyApp = document.getElementById('touchy-app');
+var touchyApp = document.getElementById('js-touchy-app');
 touchyApp.addEventListener('click', updateColorScheme);
