@@ -553,6 +553,9 @@ body {
   border-radius: 50px;
   opacity: 0.8;
   box-shadow: 0 0 9px #fff;
+  -webkit-transform: translate(-10px, -10px);
+      -ms-transform: translate(-10px, -10px);
+          transform: translate(-10px, -10px);
   -webkit-transition: all 0.7s;
           transition: all 0.7s;
 }
