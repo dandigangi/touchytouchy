@@ -83,17 +83,17 @@ var TouchyTouchyUI = React.createClass({
                             </a>
                         </li>
                         <li className="react">
-                            <a href="#">
+                            <a href="http://facebook.github.io/react/" target="_blank">
                                 <img src="dist/assets/images/resource-react.jpg" />
                             </a>
                         </li>
                         <li className="sass">
-                            <a href="#">
+                            <a href="http://sass-lang.com/" target="_blank">
                                 <img src="dist/assets/images/resource-sass.jpg" />
                             </a>
                         </li>
                         <li className="gulp">
-                            <a href="#">
+                            <a href="http://gulpjs.com/" target="_blank">
                                 <img src="dist/assets/images/resource-gulp.jpg" />
                             </a>
                         </li>
