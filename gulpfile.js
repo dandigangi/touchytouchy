@@ -1,6 +1,6 @@
 /*!
  * gulp
- * $ npm install del gulp-ruby-sass gulp-sourcemaps gulp-autoprefixer gulp-minify-css gulp-jshint gulp-concat gulp-uglify gulp-imagemin gulp-notify gulp-rename gulp-livereload gulp-cache --save-dev
+ * $ npm install del gulp gulp-react gulp-ruby-sass gulp-autoprefixer gulp-minify-css gulp-jshint gulp-concat gulp-uglify gulp-imagemin gulp-notify gulp-rename gulp-livereload gulp-cache --save-dev
  */
 
 // Modules
@@ -8,8 +8,8 @@ var del = require('del');
 
 // Gulp
 var gulp = require('gulp');
+var react = require('gulp-react');
 var sass = require('gulp-ruby-sass');
-var sourcemaps = require('gulp-sourcemaps');
 
 // Gulp Plugins
 var concat = require('gulp-concat');
@@ -40,7 +40,6 @@ gulp.task('css', function() {
     .pipe(minifycss({
       root: 'src/assets/css'
     }))
-    .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/assets/css'))
     .pipe(notify({
       message: 'CSS build complete!'
@@ -69,8 +68,8 @@ gulp.task('javascript', function() {
         'src/assets/javascript/app.js'
       ]
     )
+    .pipe(react())
     .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('default'))
     .pipe(concat('app.js'))
     .pipe(gulp.dest('dist/assets/javascript'))
     .pipe(rename({

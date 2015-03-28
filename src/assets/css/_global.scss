@@ -1,0 +1,23 @@
+
+*,
+*:before,
+*:after {
+    position: relative;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "fira-sans-2", sans-serif;
+    color: #fff;
+    font-size: 1.4rem;
+    background-color: #2a5b78;
+    @include transition(background-color .5s);
+}
