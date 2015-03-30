@@ -4,7 +4,50 @@ var generateHexColor = function() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
 }
 
-// Components
+// Data
+// TODO: Backend storage (thinking MongoDB)
+// TODO: Move data structures into ImmutableJS (once stored ^)
+window.UserHistory = function() {
+    var instance = this;
+    return instance;
+};
+
+// Inits a new event history if one does not exist or the previous is destroyed
+UserHistory.prototype.create = function() {
+
+    if (!this.history) {
+        this.prototype.history = {
+            events: {},
+            count: 0
+        }
+    }
+
+    return this;
+};
+
+// Destory the current event history and create() another
+UserHistory.prototype.destroy = function() {
+
+    if (this.history) {
+        this.history = {};
+    }
+
+    return this;
+};
+
+// Store a new event in the user's event history
+UserHistory.prototype.store = function(newEvent) {
+
+    if (!this.history) {
+        this.create();
+    }
+
+    _.assign(this.history.events, newEvent);
+
+    return this;
+};
+
+// React Components
 var ClickTrail = React.createClass({
 
     propTypes: {
@@ -29,12 +72,31 @@ var ClickTrail = React.createClass({
     }
 });
 
+var Tiles = React.createClass({
+    render: function() {
+        return  (
+            <li>Tile</li>
+        );
+    }
+});
+
+var TileHistory = React.createClass({
+    render: function() {
+        return  (
+            <ul>
+                <Tiles />
+            </ul>
+        );
+    }
+});
+
+// App
 var TouchyTouchyUI = React.createClass({
 
     getDefaultProps: function() {
         return {
-            lastEvent: null,
-            backgroundColor: null
+            userHistory: new UserHistory(),
+            lastEvent: null
         }
     },
 
@@ -48,15 +110,18 @@ var TouchyTouchyUI = React.createClass({
 
         var newEvent = {
             currentTimestamp: Date.now(),
+            backgroundColor: generateHexColor(),
             mousePosX: evt.clientX,
             mousePosY: evt.clientY
         };
 
         this.setState({ showclickTrail: true });
+
         this.setProps({
-            lastEvent: newEvent,
-            backgroundColor: generateHexColor()
+            lastEvent: newEvent
         });
+
+        this.props.userHistory.store(this.props.lastEvent);
     },
 
     render: function() {
@@ -104,7 +169,7 @@ var TouchyTouchyUI = React.createClass({
     }
 });
 
-// Kickoff
+// Init
 React.render(
   <TouchyTouchyUI />,
   document.getElementById('TouchyTouchyUI')
