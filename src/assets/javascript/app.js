@@ -4,48 +4,63 @@ var generateHexColor = function() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
 }
 
+var format
+
 // Data
 // TODO: Backend storage (thinking MongoDB)
 // TODO: Move data structures into ImmutableJS (once stored ^)
 window.UserHistory = function() {
-    var instance = this;
-    return instance;
-};
+    this.create();
+    return this;
+}
 
 // Inits a new event history if one does not exist or the previous is destroyed
 UserHistory.prototype.create = function() {
-
-    if (!this.history) {
-        this.prototype.history = {
-            events: {},
-            count: 0
-        }
+    this.storage = {
+        events: [],
+        total: 0
     }
 
     return this;
-};
+}
 
 // Destory the current event history and create() another
 UserHistory.prototype.destroy = function() {
 
-    if (this.history) {
-        this.history = {};
+    if(this.storage && this.storage.events.length || this.storage.total > 0) {
+        this.storage = null;
+        this.create();
     }
 
     return this;
-};
+}
 
 // Store a new event in the user's event history
 UserHistory.prototype.store = function(newEvent) {
 
-    if (!this.history) {
+    if(!this.storage) {
         this.create();
     }
 
-    _.assign(this.history.events, newEvent);
-
+    this.storage.total++;
+    newEvent.id = this.get('total');
+    this.storage.events.push(newEvent);
     return this;
-};
+}
+
+UserHistory.prototype.get = function(key) {
+    if(this.storage && _.has(this.storage, key)) {
+        return this.storage[key];
+    }
+}
+
+UserHistory.prototype.getFirstEvent = function() {
+    return this.get('events').splice(0, 1);
+}
+
+UserHistory.prototype.getLastEvent = function() {
+    return this.get('events').splice(-1, 1);
+}
 
 // React Components
 var ClickTrail = React.createClass({
@@ -73,18 +88,53 @@ var ClickTrail = React.createClass({
 });
 
 var Tiles = React.createClass({
+
+    propTypes: {
+        userEvent: React.PropTypes.object
+    },
+
     render: function() {
-        return  (
-            <li>Tile</li>
+
+        var userEvent = this.props.userEvent;
+
+        return (
+            <p>
+                ID: { userEvent.id }<br />
+                Mouse X: { userEvent.mousePosX }<br />
+                Mouse Y: { userEvent.mousePosY }<br />
+                Background Color: { userEvent.backgroundColor }
+            </p>
         );
     }
 });
 
 var TileHistory = React.createClass({
+
+    propTypes: {
+        storedEvents: React.PropTypes.array
+    },
+
+    getDefaultProps: function() {
+        return {
+            storedEvents: []
+        }
+    },
+
     render: function() {
+
+        var storedEvents = this.props.storedEvents;
+
+        var eventTiles = storedEvents.map(function(evt) {
+            return (
+                <li>
+                    <Tiles userEvent={ evt }  />
+                </li>
+            );
+        });
+
         return  (
             <ul>
-                <Tiles />
+                { eventTiles }
             </ul>
         );
     }
@@ -115,26 +165,24 @@ var TouchyTouchyUI = React.createClass({
             mousePosY: evt.clientY
         };
 
+        this.props.userHistory.store(newEvent);
         this.setState({ showclickTrail: true });
-
         this.setProps({
             lastEvent: newEvent
         });
-
-        this.props.userHistory.store(this.props.lastEvent);
     },
 
     render: function() {
 
-        var lastEvent = null;
-        var colorScheme = null;
-
-        this.props.lastEvent ? lastEvent = this.props.lastEvent : null;
-        this.props.backgroundColor ? colorScheme = this.props.backgroundColor : null;
+        var storedUserEvents = this.props.userHistory.get('events');
+        var tileHistory = storedUserEvents.length ? <TileHistory storedEvents={ storedUserEvents } /> : null;
+        var clickTrail = this.props.lastEvent ? <ClickTrail lastEvent={ this.props.lastEvent } /> : null;
+        var colorScheme = this.props.backgroundColor ? colorScheme = this.props.backgroundColor : null;
 
         return (
             <div className="AppInterface" onClick={ this.handleClick } style={{ backgroundColor: colorScheme }}>
-                <ClickTrail lastEvent={ lastEvent } />
+                { clickTrail }
+                { tileHistory }
                 <div className="container titles">
                     <h1>Touchy<span className="inner-copy">Touchy</span></h1>
                     <h2>Give your screen a tap!</h2>
