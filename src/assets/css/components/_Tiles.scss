@@ -1,0 +1,20 @@
+
+.Tiles {
+    
+}
+
+.Tiles:before {
+    filter: blur(5px);
+}
+
+
+.Tiles .list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
+.Tiles .list li {
+    padding: 10px;
+    flex: 1 0 auto;
+}

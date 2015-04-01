@@ -1,5 +1,14 @@
 
+// Core
 @import "vendor";
-@import "utils";
+@import "buttons";
 @import "global";
+@import "utils";
+
+// Components
+@import "components/ClickTrail";
+@import "components/TileHistory";
+@import "components/Tiles";
+
+// App
 @import "main";

@@ -61,10 +61,12 @@ gulp.task('images-css', function() {
 });
 
 // Javascript
-gulp.task('javascript', function() {
+gulp.task('js', function() {
   return gulp.src(
       [
         'src/assets/javascript/vendor/*.js',
+        'src/assets/javascript/utils.js',
+        'src/assets/javascript/UserHistory.js',
         'src/assets/javascript/app.js'
       ]
     )
@@ -103,7 +105,7 @@ gulp.task('clean', function(cb) {
 
 // Builder
 gulp.task('default', ['clean'], function() {
-  gulp.start('css', 'images-css', 'javascript', 'images');
+  gulp.start('css', 'images-css', 'js', 'images');
 });
 
 // Watchers

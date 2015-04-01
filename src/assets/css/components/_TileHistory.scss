@@ -1,0 +1,15 @@
+
+.TileHistory {
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.45);
+    transition: all .2s;
+}
+
+.TileHistory-tab {
+    transform: translate(50%, 100%);
+}
+
+.TileHistory-toggler {
+    left: 50%;
+    transform: translate(50%, 30px);
+}
