@@ -1,5 +1,7 @@
 ![alt tag](preview.jpg)
 
+![alt tag](preview-2.jpg)
+
 TouchyTouchy was a play around project that involved working with ReactJS, SASS and Gulp.
 
 ## Installation
@@ -40,7 +42,7 @@ $ gulp images-css
 
 Build javascript
 ```sh
-$ gulp javascript
+$ gulp js
 ```
 
 Compress main image assets
