@@ -35,11 +35,12 @@ var Tiles = React.createClass({
         var userEvent = this.props.userEvent;
 
         return (
-            <div>
-                ID: { userEvent.id }<br />
-                Mouse X: { userEvent.mousePosX }<br />
-                Mouse Y: { userEvent.mousePosY }<br />
-                Background Color: { userEvent.backgroundColor }
+            <div className="container" style={{ backgroundColor: userEvent.backgroundColor }}>
+                <div className="event-id">#{ userEvent.id }</div>
+                <p className="event-coordinates">
+                    Coordinates:<br />
+                    ({ userEvent.mousePosX }, { userEvent.mousePosY })
+                </p>
             </div>
         );
     }
@@ -48,6 +49,7 @@ var Tiles = React.createClass({
 var TileHistory = React.createClass({
 
     propTypes: {
+        clickHandlers: React.PropTypes.object,
         storedEvents: React.PropTypes.array
     },
 
@@ -57,29 +59,43 @@ var TileHistory = React.createClass({
         }
     },
 
-    render: function() {
+    uiDestroyHistory: function(evt) {
+        evt.preventDefault();
+        this.props.storedEvents = [];
+        this.props.clickHandlers.uiDestroyHistory();
+        this.props.clickHandlers.uiShowEventHistory(evt);
+    },
 
-        console.warn(this.props);
+    render: function() {
 
         var storedEvents = this.props.storedEvents;
 
-        var eventTiles = storedEvents.map(function(evt) {
-            return (
-                <li className="Tile" key={ evt.id }>
-                    <Tiles userEvent={ evt }  />
-                </li>
-            );
-        });
-
         return  (
-            <div className={ this.props.classes }>
+            <div
+                className={ this.props.classes }
+                onClick={ this.props.clickHandlers.uiStopPropagation }>
+                <div className="container titles">
+                    <h3>Click Event History</h3>
+                    <h4>We stored some information about how you clicked this app&#39;s interface</h4>
+                </div>
+                <button className="TileHistory-delete" onClick={ this.uiDestroyHistory }>
+                    Delete History
+                </button>
                 <div className="Tiles">
                     <ul className="list reset">
-                        { eventTiles }
+                        { storedEvents.map(function(storedEvent) {
+                            return (
+                                <li className="Tile" key={ storedEvent.id }>
+                                    <Tiles userEvent={ storedEvent }  />
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
                 <div className="TileHistory-tab">
-                    <button className="TileHistory-view-toggler" onClick={ this.props.uiShowEventHistory }>Show History</button>
+                    <button
+                        onClick={ this.props.clickHandlers.uiShowEventHistory }
+                        className="TileHistory-view-toggle">Show History</button>
                 </div>
             </div>
         );
@@ -89,60 +105,72 @@ var TileHistory = React.createClass({
 // App
 var TouchyTouchyUI = React.createClass({
 
+    // Props & state
     getDefaultProps: function() {
         return {
-            historyViewEnabled: false,
-            userHistory: new UserHistory(),
-            lastEvent: null
+            lastEvent: null,
+            userHistory: new UserHistory()
         }
     },
 
     getInitialState: function() {
         return {
+            historyViewEnabled: false,
             showclickTrail: false
         }
     },
 
+    // Interface initiated events
     uiInterfaceClick: function(evt) {
-        console.warn('uiInterfaceClick');
         evt.preventDefault();
 
-        if(!this.state.historyViewEnabled) {
+        var newEvent = {
+            currentTimestamp: Date.now(),
+            backgroundColor: utils.generateHexColor(),
+            mousePosX: evt.clientX,
+            mousePosY: evt.clientY
+        };
 
-            var newEvent = {
-                currentTimestamp: Date.now(),
-                backgroundColor: utils.generateHexColor(),
-                mousePosX: evt.clientX,
-                mousePosY: evt.clientY
-            };
-
-            this.props.userHistory.store(newEvent);
-            this.setState({ showclickTrail: true });
-            this.setProps({
-                lastEvent: newEvent
-            });
-        }  
+        this.props.userHistory.store(newEvent);
+        this.setState({ showclickTrail: true });
+        this.setProps({
+            lastEvent: newEvent
+        });
     },
 
     uiShowEventHistory: function(evt) {
-        console.warn('uiShowEventHistory');
         evt.preventDefault();
         evt.stopPropagation();
         this.setState({ historyViewEnabled: !this.state.historyViewEnabled });
     },
 
-    render: function() {
+    uiDestroyHistory: function() {
+        this.props.userHistory.destroy();
+    },
 
+    uiStopPropagation: function(evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
+    },
+
+    // Render
+    render: function() {
         var clickTrail = null;
         var colorScheme = null;
         var storedUserEvents = this.props.userHistory.get('events');
+        var tileHistoryClickHandlers = {
+            uiShowEventHistory: this.uiShowEventHistory,
+            uiDestroyHistory: this.uiDestroyHistory,
+            uiStopPropagation: this.uiStopPropagation
+        };
         var tileHistoryClassSet = utils.classNames(
             'TileHistory',
-            { 'is-hidden': this.state.historyViewEnabled }
+            { 'is-hidden-translateY': !this.state.historyViewEnabled }
         );
         var tileHistory = storedUserEvents.length ?
             <TileHistory
-                uiShowEventHistory={ this.uiShowEventHistory }
+                userHistory={ this.props.userHistory }
+                clickHandlers={ tileHistoryClickHandlers }
                 storedEvents={ storedUserEvents }
                 classes={ tileHistoryClassSet } />
             : null;

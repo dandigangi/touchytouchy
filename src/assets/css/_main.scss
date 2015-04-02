@@ -6,7 +6,7 @@
 }
 
 .AppInterface {
-    background: radial-gradient(ellipse at center,  rgba(255,255,255,0.2) 0%,rgba(255,255,255,0) 100%);
+    background: radial-gradient(ellipse at center,  rgba(255,255,255,0.3) 0%,rgba(255,255,255,0) 100%);
     cursor: pointer;
     transition: background-color .4s;
 }
@@ -14,6 +14,9 @@
 // Hero titles
 .container.hero-titles {
     z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
 }

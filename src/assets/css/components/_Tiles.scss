@@ -1,12 +1,8 @@
 
 .Tiles {
-    
+    clear: both;
+    left: -12px;
 }
-
-.Tiles:before {
-    filter: blur(5px);
-}
-
 
 .Tiles .list {
     display: flex;
@@ -15,6 +11,32 @@
 }
 
 .Tiles .list li {
+    width: 16.667%;
+    margin: 0 1.5% 1.5%;
+}
+
+.Tiles .list .container {
     padding: 10px;
-    flex: 1 0 auto;
+    background-color: rgba(0, 0, 0, .25);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+    transition: all .2s;
+}
+
+.Tiles .list .container:hover {
+    transform: scale(1.2);
+}
+
+.Tile .event-id {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: rgba(0, 0, 0, 0.25);
+    font-size: 3.8rem;
+    line-height: 3.8rem;
+    font-weight: 800;
+}
+
+.Tile .event-coordinates {
+    margin: 0;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }
