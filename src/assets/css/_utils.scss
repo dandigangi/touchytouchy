@@ -3,6 +3,14 @@
     display: none;
 }
 
+.is-hidden-translateY {
+    transform: translateY(-100%);
+}
+
+.is-hidden-translateX {
+    transform: translateX(-100%);
+}
+
 .is-invisible {
     visibility: hidden;
 }
