@@ -21,8 +21,9 @@ var TouchyTouchyUI = React.createClass({
     uiInterfaceClick: function(evt) {
         evt.preventDefault();
 
+        var timestamp = new Date();
         var newEvent = {
-            currentTimestamp: Date.now(),
+            timestamp: String(timestamp),
             backgroundColor: utils.generateHexColor(),
             mousePosX: evt.clientX,
             mousePosY: evt.clientY

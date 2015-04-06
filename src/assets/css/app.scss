@@ -4,10 +4,13 @@
 @import "global";
 @import "utils";
 
-// Components
+// Shared
+@import "shared/buttons";
+
+// Components (React)
 @import "components/ClickTrail";
 @import "components/TileHistory";
-@import "components/Tiles";
+@import "components/Tile";
 
 // App
 @import "main";

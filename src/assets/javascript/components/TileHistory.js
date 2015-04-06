@@ -31,16 +31,14 @@ var TileHistory = React.createClass({
                     <h3>Click Event History</h3>
                     <h4>We stored some information about how you clicked this app&#39;s interface</h4>
                 </div>
-                <button className="TileHistory-delete" onClick={ this.uiDestroyHistory }>
+                <button className="text- TileHistory-delete" onClick={ this.uiDestroyHistory }>
                     Delete History
                 </button>
-                <div className="Tiles">
+                <div className="tiles">
                     <ul className="list reset">
                         { storedEvents.map(function(storedEvent) {
                             return (
-                                <li className="Tile" key={ storedEvent.id }>
-                                    <Tiles userEvent={ storedEvent }  />
-                                </li>
+                                <Tile key={ storedEvent.id } userEvent={ storedEvent } />
                             );
                         })}
                     </ul>

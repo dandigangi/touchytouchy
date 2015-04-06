@@ -1,0 +1,29 @@
+
+// Modifiers
+.round- {
+  border-radius: 7px;
+}
+
+.circle- {
+  border-radius: 25px;
+}
+
+// Basic
+.btn {
+  display: inline-block;
+  padding: 0 15px;
+  margin: 0;
+  background-color: #333;
+  font-size: 1.2rem;
+  line-height: 2.4rem;
+  color: #fff;
+  border-width: 0;
+  box-shadow: inset 0px -2px 8px -3px rgba(0,0,0,.6);
+  text-shadow: 1px 1px 1px #000;
+  outline: none;
+}
+
+// Specifics
+.btn.delete {
+    background-color: #c41717;
+}
