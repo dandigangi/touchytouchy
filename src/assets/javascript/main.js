@@ -92,22 +92,22 @@ var TouchyTouchyUI = React.createClass({
                     <ul className="list reset">
                         <li className="javascript">
                             <a href="#">
-                                <img src="dist/assets/images/resource-js.jpg" />
+                                <img src="build/assets/images/resource-js.jpg" />
                             </a>
                         </li>
                         <li className="react">
                             <a href="http://facebook.github.io/react/" target="_blank">
-                                <img src="dist/assets/images/resource-react.jpg" />
+                                <img src="build/assets/images/resource-react.jpg" />
                             </a>
                         </li>
                         <li className="sass">
                             <a href="http://sass-lang.com/" target="_blank">
-                                <img src="dist/assets/images/resource-sass.jpg" />
+                                <img src="build/assets/images/resource-sass.jpg" />
                             </a>
                         </li>
                         <li className="gulp">
                             <a href="http://gulpjs.com/" target="_blank">
-                                <img src="dist/assets/images/resource-gulp.jpg" />
+                                <img src="build/assets/images/resource-gulp.jpg" />
                             </a>
                         </li>
                     </ul>
