@@ -2,7 +2,7 @@
 
 ![alt tag](preview-2.jpg)
 
-TouchyTouchy was a play around project that involved working with ReactJS, SASS and Gulp.
+TouchyTouchy was a play around project that involved working with ReactJS, SASS, Browserify and Gulp.
 
 ## Installation
 

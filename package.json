@@ -1,25 +1,25 @@
 {
   "name": "TouchyTouchy",
-  "description": "A fun project demonstrating touch events with HammerJS",
-  "repository": "http://github.com/dandigangi",
+  "version": "1.1.2",
+  "description": "Play around project w/ ReactJS, SASS, Browserify and Gulp",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/dandigangi/touchytouchy"
+  },
   "devDependencies": {
     "http-server": "0.8.x",
     "del": "^1.1.1",
     "gulp": "^3.8.11",
-    "gulp-react": "^3.0.1",
     "gulp-ruby-sass": "^1.0.1",
+    "gulp-react": "^3.0.1",
+    "gulp-notify": "^2.2.0",
     "gulp-autoprefixer": "^2.1.0",
     "gulp-cache": "^0.2.8",
     "gulp-concat": "^2.5.2",
     "gulp-imagemin": "^2.2.1",
     "gulp-jshint": "^1.9.4",
-    "gulp-livereload": "^3.8.0",
     "gulp-minify-css": "^1.0.0",
-    "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.0",
     "gulp-uglify": "^1.1.0"
-  },
-  "scripts": {
-    "start": "http-server -a"
   }
 }
