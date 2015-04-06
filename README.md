@@ -14,30 +14,16 @@ This project is not meant for production usage and uses ONLY developement depden
 
 ## Start the Application
 
+You can manually start a local server with http-server with the following:
 ```sh
-$ npm start -a
+$ http-server -p 8080 -a 127.0.0.1
 ```
-You can manually start your http-server after installation with the following:
-```sh
-$ http-server -p -a
-```
-Where -p is the port # and address is the IP. I personally run this through localhost:8080.
 
-## Commands
+## Gulp Tasks
 
 Run all build tasks
 ```sh
 $ gulp
-```
-
-Build styles
-```sh
-$ gulp css
-```
-
-Compress style image assets
-```sh
-$ gulp images-css
 ```
 
 Build javascript
@@ -45,14 +31,17 @@ Build javascript
 $ gulp js
 ```
 
-Compress main image assets
+Build styles
+```sh
+$ gulp css
+```
+
+Compress images
 ```sh
 $ gulp images
 ```
 
 ## Known Issues & TODOs
 - There are hardcoded depdencies to my local installation via Homebrew of the SASS gem that is part of the Gulp build scripts. (gulp-ruby-sass plugin)
-- The Gulp tasks have poor performance.
-- The $ npm start script needs the ability to pass multiple arguments to start the http-server module as needed. You can currently pass only an address, no port. Still reading through the docs.
 
 [Dan DiGangi]:http://dandigangi.me/

@@ -1,10 +1,10 @@
 {
   "name": "TouchyTouchy",
   "version": "1.1.2",
-  "description": "Play around project w/ ReactJS, SASS, Browserify and Gulp",
+  "description": "Play around project w/ ReactJS, SASS and Gulp",
   "repository": {
     "type": "git",
-    "url": "http://github.com/dandigangi/touchytouchy"
+    "url": "https://github.com/dandigangi/touchytouchy"
   },
   "devDependencies": {
     "del": "^1.1.1",
