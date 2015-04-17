@@ -410,6 +410,7 @@ html {
 }
 
 body {
+  overflow: hidden;
   font-family: "fira-sans-2", sans-serif;
   color: #fff;
   font-size: 1.4rem;
