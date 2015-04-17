@@ -1,6 +1,4 @@
-![alt tag](preview.jpg)
-
-![alt tag](preview-2.jpg)
+![alt tag](touchytouchy-preview.jpg)
 
 TouchyTouchy was a play around project that involved working with ReactJS, SASS, Browserify and Gulp.
 
