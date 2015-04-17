@@ -1,6 +1,6 @@
 ![alt tag](touchytouchy-preview.jpg)
 
-TouchyTouchy was a play around project that involved working with ReactJS, SASS, Browserify and Gulp.
+TouchyTouchy was a play around project that involved working with ReactJS, SASS, and Gulp.
 
 ## Gem Dependencies
 - [SASS: >3](https://rubygems.org/gems/sass/versions/3.4.13)
