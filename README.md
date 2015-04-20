@@ -2,6 +2,8 @@
 
 TouchyTouchy was a play around project that involved working with ReactJS, SASS, and Gulp.
 
+Demo: http://dandigangi.github.io/touchytouchy/
+
 ## Gem Dependencies
 - [SASS: >3](https://rubygems.org/gems/sass/versions/3.4.13)
 - [Compass Core: >1](https://rubygems.org/gems/compass-core/versions/1.0.3)
